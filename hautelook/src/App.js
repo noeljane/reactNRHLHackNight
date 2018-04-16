@@ -1,8 +1,32 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
+
+axios({
+  method: 'get', 
+  url: 'https://www.nordstromrack.com/api/search2/catalog/search?query{searchquery}'
+  })
+  .then((res, err) => {
+    if(err) console.log(err)
+    console.log(res.data)
+  })
+  
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      hits: [],
+    }
+  }
+
+  // componentDidMount () {
+  //   fetch(API + DEFAULT_QUERY)
+  //     .then(response => response.json())
+  //     .then(data => this.setState({hits: data.hits}))
+  // }
   render() {
     return (
       <div className="App">
